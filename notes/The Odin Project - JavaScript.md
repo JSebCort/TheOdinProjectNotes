@@ -11,8 +11,8 @@
     * The words 'let' and 'return' are reserved and cannot be used as a variable name.
     * Named constants, that are hard-coded, are often named in capital letters and underscores. (i.e. const COLOR_RED = "#F00") 
 4. What should you look out for when using the + operator with numbers and strings?
-    * If you try to use the + operator on a string and a number, it will instead concatinate the two as if they were both strings. (i.e. '1' + 2  = "12")
-    * Using the + operator on two numbers and then a string, it will add the numbers together but concatinate the sum with the string. (i.e. 2 + 2 + '1' = "41")
+    * If you try to use the + operator on a string and a number, it will instead concatenate the two as if they were both strings. (i.e. '1' + 2  = "12")
+    * Using the + operator on two numbers and then a string, it will add the numbers together but concatenate the sum with the string. (i.e. 2 + 2 + '1' = "41")
 5. How does the % operator work?
     * % is the remainder operator, also known as modulo.
         * It will produce the remainder of a division between two numbers.
@@ -66,7 +66,7 @@
 # Fundamentals Part 2
 ## Notes
 1. Eight basic data types in JavaScript:
-    * Number - Integer and floating point
+    * Number - Integer and floating-point
     * BigInt - Integer values larger than [2^53]-1, or 9007199254740991, and less than -[2^53]-1 for negatives
     * String - You can utilize double quotes (""), single quotes ('') and backticks (``)
         * Backticks allow the ability to embed variables and expressions into a string by wrapping them in ${…}
@@ -242,7 +242,7 @@
 5. What are return values?
     * Return values are the values returned after calling the function.
 6. What are arrow functions?
-	* Arrow functions are function expressions with a more simple and concise syntax.
+	* Arrow functions are function expressions with a simpler and concise syntax.
 	* let func = (arg1, arg2, ..., argN) => expression
         ```js
         let sum = (a, b) => a + b;
@@ -289,4 +289,18 @@
 2. What is the key difference between an error and a warning?
     * A warning simply signals to the user that a problem may occur. An error will completely stop the program when attempting to run.
 3. What is one method you can use to resolve an error?
-    * Completely read the error, it often lets you know which line in the code it occured. Also use Google as there is often the case of another person running into the same problem as you, this could lead to finding a solution.
+    * Completely read the error, it often lets you know which line in the code it occurred. Also use Google as there is often the case of another person running into the same problem as you, this could lead to finding a solution.
+
+# Clean Code
+
+## Knowledge Check
+1. Why is it important to write clean code?
+    * Having clean code will allow for anyone using it to have better understanding of how it works.
+2. Name 5 clean code principles previously mentioned.
+    * Use correct indentation
+    * Write explanatory comments
+    * Use correct naming standards for functions and variables
+    * Avoid extremely large functions
+    * Avoid having a large number of comments
+3. What is the difference between good comments and bad comments?
+    * Bad comments include those that are vague and do not pertain to the comment's purpose of better understanding the code. Good comments should be easy to understand and straight-to-the-point.

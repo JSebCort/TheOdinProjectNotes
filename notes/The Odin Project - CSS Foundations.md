@@ -13,7 +13,7 @@
     * .primary, #title
 5. What does the descendant combinator do?
     * A descendant combinator allows for a rule to only apply to the element that matches the last selector of the rule.
-	    * Example) .ancestor .contents would only apply to an element whose parent is of class 'ancestor' and whose own class is 'contents'.
+	    * Ex) .ancestor .contents would only apply to an element whose parent is of class 'ancestor' and whose own class is 'contents'.
 6. Between a rule that uses one class selector and a rule that uses three type selectors, which rule has the higher specificity?
     * The rule that has one class selector has higher specificity as it is more specific.
 # Inspecting HTML and CSS

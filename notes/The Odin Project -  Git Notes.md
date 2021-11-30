@@ -26,12 +26,12 @@ What is the command line?
 1. What kind of program is Git?
     * Git is a Distributed Version Control (DVC) system. It allows for version control of files, so that one may keep track of updates made to the file.
     * As a DVC, the database, that holds all the files and their versions, is stored locally so that every user can work on a file without having to be connected to a server.
-    * Git does not store an unchaged file again everytime it is committed. Instead, through snapshots, it stores a reference to that snapshot and links to the previous indentical file that was already stored.
+    * Git does not store an unchanged file again everytime it is committed. Instead, through snapshots, it stores a reference to that snapshot and links to the previous indentical file that was already stored.
     * Git checksums everything before it is stored through a SHA-1 hash. This hash is calculated based on the contents of a file or directory structure in Git.
 	There are three main states to Git:
 	* Modified - You have changed the file but haven't committed it to the database.
 	* Staged - You have marked the file to be committed.
-	* Comitted - You have safely stored the updated file to the database.
+	* Committed - You have safely stored the updated file to the database.
 2. What are the differences between Git and a text editor in terms of what they save and their record keeping?
     * Git allows for multiple changes to a file to be stored, while a text editor can only modify and store one file without version control.
 3. Does Git work at a local or remote level?
@@ -51,7 +51,7 @@ What is the command line?
     * Pushes the local repository to GitHub.
 	    * git push origin main
 2. Commands related to workflow:
-    * Adds all unstaged files **in the current directory** to th    e taging are.
+    * Adds all unstaged files **in the current directory** to the staging area.
 	    * git add .
     * Commits the staged item with a description of the changes.
 	    * git commit -m "A message describing what you have done to make this snapshot different"

@@ -49,7 +49,7 @@
 	* center : Aligns the items in the center
 	* stretch : The default value; The flex items switch to the height of the flex container.
 3. flex-direction has 4 values:
-	* row (main axis runs along in the inline direction \ cros axis runs down the columns)
+	* row (main axis runs along in the inline direction \ cross axis runs down the columns)
 	* row-reverse
 	* column (main axis runs from the top of the page to the bottom \ cross axis runs along the rows)
 	* column-reverse
