@@ -36,14 +36,14 @@
 ## Notes
 1. 'justify-content' 
 	* Aligns items across the main axis (x-axis / horizontally)	
-    * flex-start : Lines the items up at the start of the edge of the container
-    * flex-end : Lines the items up at the end of the container
-    * center : Lines the items up at the center of the container
-	* space-between : Takes up all the space of the container and shares it evenly between the items so theres an equal amount of space between each item.
+    * flex-start: Lines the items up at the start of the edge of the container
+    * flex-end: Lines the items up at the end of the container
+    * center: Lines the items up at the center of the container
+	* space-between: Takes all the container's space and shares it evenly between the items, leaving an equal amount of space between the items.
     ![flexbox space-between](./images/flexbox-img-three.png)
-    * space-around : Gives equal amount of space between the left and right of each item, though the end items will have half-size space.
+    * space-around: Gives equal amount of space between the left and right of each item, though the end items will have half-size space.
     ![flexbox space-around](./images/flexbox-img-two.png)
-    * space-evenly : To not have half-size space next to the end items, use space-evenly.
+    * space-evenly: To not have half-size space next to the end items, use space-evenly.
     ![flexbox space-evenly](./images/flexbox-img-one.png)
 2. 'align-items'
 	* Aligns items across the cross axis (y-axis / vertically)
