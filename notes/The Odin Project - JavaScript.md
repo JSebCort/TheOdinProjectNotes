@@ -304,3 +304,44 @@
     * Avoid having a large number of comments
 3. What is the difference between good comments and bad comments?
     * Bad comments include those that are vague and do not pertain to the comment's purpose of better understanding the code. Good comments should be easy to understand and straight-to-the-point.
+
+# Foundations Part 4
+## Knowledge Check
+
+1. What is an array?
+    * An array is a variable that can hold a list of values.
+    ```js 
+    const array_name = [item1, item2, ...];
+    // or
+    const array_name = new Array(item1, item2, ...);
+    ```
+2. What are arrays useful for?
+    * Arrays are useful in that rather than having X amount of variables, each holding a different value, you can have an array of X length of all the different values under a single variable.
+3. How do you access an array element?
+    * You can access an array element using the element's index value.
+    ```js
+    const cars = ["Saab", "Volvo", "BMW"];
+    let car = cars[0]; // returns Saab
+    ```
+4. How do you change an array element?
+    * Similar to accessing the element, you can change it using the index value.
+    ```js
+    const cars = ["Saab", "Volvo", "BMW"];
+    cars[0] = "Opel";
+    ```
+5. What are some useful array properties?
+    * ```.length``` returns the number of elements within the array.
+    * You can access the last array element b
+6. What are some useful array methods?
+    * ```Array.sort()``` sorts the array.
+    * ```Array.forEach()``` loops through the array.
+    * ```Array.push()``` adds an element to the end of the array.
+    * ```Array.pop()``` removes the element at the end of the array.
+7. What are loops useful for?
+    * Loops are useful in helping the user iterate a task, using different variables, through lines of code multiple times.
+8. What is the break statement?
+    * The break statement will immediately terminate the current loop and resume at the next statement. 
+9. What is the continue statement?
+    * The continue statement will force the next iteration of the loop to take place.
+10. What is the advantage of writing automated tests?
+    * Through Test Driven Development (TTD), you want to first write a test that uses the function and supplies the expected output. This helps so that you don't have to write the code multiple times before being satisfied with the outputs.
