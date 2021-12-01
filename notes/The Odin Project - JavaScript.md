@@ -310,25 +310,25 @@
 
 1. What is an array?
     * An array is a variable that can hold a list of values.
-    ```js 
-    const array_name = [item1, item2, ...];
-    // or
-    const array_name = new Array(item1, item2, ...);
-    ```
+    	```js 
+    	const array_name = [item1, item2, ...];
+    	// or
+    	const array_name = new Array(item1, item2, ...);
+    	```
 2. What are arrays useful for?
     * Arrays are useful in that rather than having X amount of variables, each holding a different value, you can have an array of X length of all the different values under a single variable.
 3. How do you access an array element?
     * You can access an array element using the element's index value.
-    ```js
-    const cars = ["Saab", "Volvo", "BMW"];
-    let car = cars[0]; // returns Saab
-    ```
+    	```js
+    	const cars = ["Saab", "Volvo", "BMW"];
+    	let car = cars[0]; // returns Saab
+    	```
 4. How do you change an array element?
     * Similar to accessing the element, you can change it using the index value.
-    ```js
-    const cars = ["Saab", "Volvo", "BMW"];
-    cars[0] = "Opel";
-    ```
+    	```js
+    	const cars = ["Saab", "Volvo", "BMW"];
+    	cars[0] = "Opel";
+    	```
 5. What are some useful array properties?
     * ```.length``` returns the number of elements within the array.
     * You can access the last array element b
