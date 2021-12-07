@@ -345,3 +345,289 @@
     * The continue statement will force the next iteration of the loop to take place.
 10. What is the advantage of writing automated tests?
     * Through Test Driven Development (TTD), you want to first write a test that uses the function and supplies the expected output. This helps so that you don't have to write the code multiple times before being satisfied with the outputs.
+
+# DOM Manipulation and Events
+## Notes
+1. DOM
+    * Document Object Model
+    * Tree-like representation of the contents of a webpage. The tree has nodes with different relationships depending on their arrangement inside the HTML document.
+        ```html
+            <div id="container">
+                <div class="display"></div>
+                <div class="controls"></div>
+            </div>
+        ```
+    * The "display" class is a child of "container" whilst a sibling to "controls".
+2. Selectors
+    * You can use selectors to target the nodes you want to work with, through a combination of CSS-style selectors and relationship properties.
+        ```html
+            <div id="container">
+                <div class="display"></div>
+                <div class="controls"></div>
+            </div>
+        ```
+    * For the above example, you can use the following selectors to refer to the "display" div:
+        1. div.display
+        2. .display
+        3. #container > .display
+        4. div#container > div.display
+    * You can also use relational selectors (such as firstElementChild or lastElementChild) with special properties owned by the nodes.
+        ```js
+            const container = document.querySelector('#container');
+            // select the #container div
+
+            console.dir(container.firstElementChild);                      
+            // select the first child of #container => .display
+
+            const controls = document.querySelector('.controls');   
+            // select the .controls div
+
+            console.dir(controls.previousElementSibling);                  
+            // selects the prior sibling => .display
+        ```
+3. DOM methods
+    * When HTML is parsed by a web browser, it is converted to the DOM. Through this, nodes are objects and thus have many properties and methods attached to them. These properties and methods can be used to manipulate the webpage with JavaScript.
+        1. Query Selectors
+            * `element.querySelector(selector)` returns reference to the first match of selector
+            * `element.querySelectorAll(selectors)` returns a “nodelist” (not an array but can be converted into one using Array.from() or the spread operator) containing references to all of the matches of the selectors
+        2. Element Creation
+            * `document.createElement(tagName, [options])` creates a new element of tag type tagName. [options] in this case means you can add some optional parameters to the function.
+            ```js
+                const div = document.createElement('div');
+            ```
+            * The above function is ONLY created in memory and NOT into DOM. You can manipulate the element (by adding styles, classes, etc.) before placing it on the page.
+        3. Append Elements
+            * `parentNode.appendChild(childNode)` appends childNode as the last child of parentNode
+            * `parentNode.insertBefore(newNode, referenceNode)` inserts newNode into parentNode before referenceNode
+        4. Remove Elements
+            * `parentNode.removeChild(child)` removes child from parentNode on the DOM and returns reference to child
+        5. Altering Elements
+            * When you have a reference to an element, you can use that reference to alter the element’s own properties. This allows you to do many useful alterations, like adding/removing and altering attributes, changing classes, adding inline style information and more.
+            ```js
+                const div = document.createElement('div');
+                // create a new div referenced in the variable 'div'
+            ```
+        6. Adding inline style
+            ```js
+                const div = document.createElement('div');
+                // create a new div referenced in the variable 'div'
+
+                div.style.color = 'blue';                                      
+                // adds the indicated style rule
+
+                div.style.cssText = 'color: blue; background: white';          
+                // adds several style rules
+
+                div.setAttribute('style', 'color: blue; background: white');    
+                // adds several style rules
+            ```
+            * More information on inline styles [DOM Enlightenment: Getting, setting, & removing individual inline CSS properties](http://domenlightenment.com/#6.2)
+            * If the CSS rule is in kebab-case (using dashes between words rather than spaces), you'll have to use camelcase or bracket notation instead of dot notation.
+            ```js
+                div.style.background-color // doesn't work - attempts to subtract color from div.style.background
+                div.style.backgroundColor // accesses the divs background-color style
+                div.style['background-color'] // also works
+                div.style.cssText = "background-color: white" // ok in a string
+            ```
+        7. Editing Attributes
+            ```js
+                div.setAttribute('id', 'theDiv');                              
+                // if id exists update it to 'theDiv' else create an id with value "theDiv"
+
+                div.getAttribute('id');                                        
+                // returns value of specified attribute, in this case "theDiv"
+
+                div.removeAttribute('id');                                     
+                // removes specified attribute
+            ```
+            * More information about available attributes [MDN: HTML attribute reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes)
+        8. Working with classes
+            ```js
+                div.classList.add('new');                                      
+                // adds class "new" to your new div
+
+                div.classList.remove('new');                                   
+                // remove "new" class from div
+
+                div.classList.toggle('active');                                
+                // if div doesn't have class "active" then add it. Or if it does, then remove it
+            ```
+            * It's often more standard and clean to toggle a CSS style over adding and removing inline CSS.
+        9. Adding text content
+            ```js
+                div.textContent = 'Hello World!'                               
+                // creates a text node containing "Hello World!" and inserts it in div
+            ```
+        10. Adding HTML content
+            ```js
+                div.innerHTML = '<span>Hello World!</span>';                   
+                // renders the html inside div
+            ```
+        11. Complete Example
+            ```html
+                <!-- your html file: -->
+                <body>
+                    <h1>
+                        THE TITLE OF YOUR WEBPAGE
+                    </h1>
+                    <div id="container"></div>
+                </body>
+            ```
+            ```js
+                // your javascript file
+                const container = document.querySelector('#container');
+
+                const content = document.createElement('div');
+                content.classList.add('content');
+                content.textContent = 'This is the glorious text-content!';
+
+                container.appendChild(content);
+            ```
+            * In the JS file, we get a reference to the `container` div that already exists in the HTML file. Then a new div is created and stored as `content`. We add a class and some text to '`content` and append that to the reference `container`.
+            * After the JS code is run, the DOM tree will look like this:
+            ```html
+                <!-- The DOM -->
+                <body>
+                    <h1>
+                        THE TITLE OF YOUR WEBPAGE
+                    </h1>
+                    <div id="container">
+                        <div class="content">
+                        This is the glorious text-content!
+                        </div>
+                    </div>
+                </body>
+            ```
+            * REMINDER: That the JS only alters the DOM and not the HTML. The HTML file will look the same but the JS changes what the browser renders.
+            * If you write your JS code at the top of your file, many DOM methods will not work bcause the JS code is being run before the nodes are created in the DOM. To fix this, you either write the JS code at the bottom of the HTML file or you link the JS file inside the `<head>` tag.
+4. Events
+    * JavaScript can be used to make out webpage listen and react to events (actions that occur on the webpage like mouse-clicks or keypresses).
+    * There are three ways to do this:
+        1. Attach functions' attributes directly on the HTML elements. This can clutter the HTML with JavaScript and you can only have 1 "onclick" event per element.
+            ```html
+                <button onclick="alert('Hello World')">Click Me</button>
+            ```
+        2. Set the "on_event_" property on the DOM object in the JavaScript. Though cleaner, you can still only have 1 "onclick" property.
+            ```html
+                <!-- the html file -->
+                <button id="btn">Click Me</button>
+            ```
+            ```js
+                // the JavaScript file
+                const btn = document.querySelector('#btn');
+                btn.onclick = () => alert("Hello World");
+            ```
+        3. Attach event listeners to the nodes in the JavaScript.
+            ```html
+                <!-- the html file -->
+                <button id="btn">Click Me Too</button>
+            ```
+            ```js
+                // the JavaScript file
+                const btn = document.querySelector('#btn');
+                btn.addEventListener('click', () => {
+                    alert("Hello World");
+                });
+            ```
+        4. All 3 of these methods can be used with named functions.
+            ```html
+                <!-- the html file -->
+                <!-- METHOD 1 -->
+                <button onclick="alertFunction()">CLICK ME BABY</button>
+            ```
+            ```js
+                function alertFunction() {
+                alert("YAY! YOU DID IT!");
+                }
+
+                // METHOD 2
+                btn.onclick = alertFunction;
+
+                // METHOD 3
+                btn.addEventListener('click', alertFunction);
+            ```
+    * You can also attach listeners to a group of nodes using  `querySelectorAll('selector')` and then iterating though the list.
+        ```html
+            <div id="container">
+                <button id="1">Click Me</button>
+                <button id="2">Click Me</button>
+                <button id="3">Click Me</button>
+            </div>
+        ```
+        ```js
+            // buttons is a node list. It looks and acts much like an array.
+            const buttons = document.querySelectorAll('button');
+
+            // we use the .forEach method to iterate through each button
+            buttons.forEach((button) => {
+
+            // and for each one we add a 'click' listener
+            button.addEventListener('click', () => {
+                alert(button.id);
+            });
+            });
+        ```
+    * There are many more useful events (click, dblclick, keypress, keydown, keyup). 
+    * List of DOM events and their description can be found [HERE](https://www.w3schools.com/jsref/dom_obj_event.asp)
+## Knowledge Check
+1. What is the DOM?
+    * The DOM (or Document Object Model) is a tree-like representation of the contents of a webpage - a tree of “nodes” with different relationships depending on how they’re arranged in the HTML document.
+2. How do you target the nodes you want to work with?
+    * Selectors or Relational Selectors
+3. How do you create an element in the DOM?
+    * `document.createElement(tagName, [options])`
+    * Ex) `const div = document.createElement('div');`
+4. How do you add an element to the DOM?
+    * `parentNode.appendChild(childNode)` appends childNode as the last child of parentNode
+    * `parentNode.insertBefore(newNode, referenceNode)` inserts newNode into parentNode before referenceNode
+5. How do you remove an element from the DOM?
+    * `parentNode.removeChild(child)` removes child from parentNode on the DOM and returns reference to child
+6. How can you alter an element in the DOM?
+    * You create a reference to an element and use that reference to alter the element through changing attributes, classes and other inline style information.
+7. When adding text to a DOM element, should you use textContent or innerHTML? Why?
+    * textContent/innerText because innerHTML information is rendered as HTML, which could be used as a way for HTML injection.
+8. Where should you include your JavaScript tag in your HTML file when working with DOM nodes?
+    * You should either have link a JavaScript file into the `<head>` tag or include the JavaScript code at the bottom of the HTML file.
+    * This is to avoid any potential errors of JavaScript being run and affecting the DOM before the entire HTML code has been run.
+9. How do “events” and “listeners” work?
+    * Events are actions that occur on the webpage (mouse-clicks or keypresses) and listeners can "listen" for these events and react to them. 
+10. What are three ways to use events in your code?
+    * You can attach the functions' attributes directly on the HTML element
+    * You can set the "on_event_" property on the DOM object in your JavaScript
+    * You can attach event listeners to the nodes in your JavaScript
+11. Why are event listeners the preferred way to handle events?
+    * Event listeners are able to scale with complex programs through iteration.
+12. What are the benefits of using named functions in your listeners?
+    * It allows for code to be much cleaner and can be reused in multiple places.
+13. How do you attach listeners to groups of nodes?
+    * You get a nodelist of all the items matching the selector using `querySelectorAll('selector')`
+    * Then you iterate through the nodelist using the `.forEach` method.
+14. What is the difference between the return values of querySelector and querySelectorAll?
+    * `querySelector` returns reference to the first match of the selector
+    * `querySelectorAll` returns a "nodelist" containing references to all of the matches of the selectors.
+15. What does a “nodelist” contain?
+    * It contains references to the nodes inside the nodelist. However, while it looks and somewhat acts like an array, it is not an array due to missing several array methods. This can be fixed by converting the nodelist into an array.
+16. Explain the difference between “capture” and “bubbling”.
+    * Information from [quirksmode.org](https://www.quirksmode.org/js/events_order.html)
+    * When you use event capturing, the event handler of element1 fires first, the event handler of element2 fires last.
+    ```
+                       | |
+        ---------------| |-----------------
+        | element1     | |                |
+        |   -----------| |-----------     |
+        |   |element2  \ /          |     |
+        |   -------------------------     |
+        |        Event CAPTURING          |
+        -----------------------------------
+    ```
+    * When you use event bubbling, the event handler of element2 fires first, the event handler of element1 fires last.
+    ```
+                       / \
+        ---------------| |-----------------
+        | element1     | |                |
+        |   -----------| |-----------     |
+        |   |element2  | |          |     |
+        |   -------------------------     |
+        |        Event BUBBLING           |
+        -----------------------------------
+    ```
