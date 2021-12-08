@@ -567,6 +567,7 @@
             });
             });
         ```
+    * NOTE: You may get an error of `Uncaught TypeError: [] is null` inside the JS file. This can be fixed by adding `defer` to the `script` tag inside the HTML file as such: `<script src="script.js" defer></script>`
     * There are many more useful events (click, dblclick, keypress, keydown, keyup). 
     * List of DOM events and their description can be found [HERE](https://www.w3schools.com/jsref/dom_obj_event.asp)
 ## Knowledge Check
