@@ -632,3 +632,93 @@
         |        Event BUBBLING           |
         -----------------------------------
     ```
+# Fundamentals Part 5
+## Notes
+1. Objects
+    * Note: Some code fragments taken from [Javascript.info](https://javascript.info/object)
+    * Objects are used to store keyed collections of various data.
+        * Objects can be created with two different syntaxes:
+            1. Using figure brackets { } with an optional list of properties. A property is a pair of keys and values (key: value). The key is a string, also referred to as a 'property name', and value, which can be anything.
+                ```js
+                // This is the "object literal" syntax
+                let user = {     // an object
+                    name: "John",  // by key "name" store value "John"
+                    age: 30,       // by key "age" store value 30
+                    "likes birds": true, // multiword property name must be quoted 
+                                         // (note that you can end the last property with & without a comma)
+                };
+                ```
+            2. Using the object constructor
+                ```js
+                // This is the "object constructor" syntax
+                let user = new Object(); 
+                ```
+        * An object's property values can be accessed through dot notation.
+            ```js
+            alert( user.name ); // John
+            alert( user.age ); // 30
+            ```
+        * We can also add and remove values as such:
+            ```js
+            user.isAdmin = true; // Adds the key 'isAdmin' with the boolean value true
+            delete user.age; // Removes both the key and value for the user's age
+            ```
+        * In order to access multiword properties, dot notation will not suffice. As such, we need to use square bracket notation.
+            ```js
+            // this would give a syntax error
+            user.likes birds = true
+
+            // this works
+            user["likes birds"] = true // set
+
+            alert(user["likes birds"]); // get
+
+            delete user["likes birds"]; // delete
+            ```
+        * When utilizing square brackets in an object literal, when creating an object, that's called computed propeties.
+            ```js
+            let fruit = prompt("Which fruit to buy?", "apple");
+
+            let bag = {
+                [fruit]: 5, // the name of the property is taken from the variable fruit
+            };
+
+            alert( bag.apple ); // 5 if fruit="apple"
+            ```js
+        * In real code, programmers often use the same names for both property names and values. This can be simplified utilizing the property value shorthand.
+            * The following code has both 'name: name' & 'age: age'.
+                ```js
+                function makeUser(name, age) {
+                    return {
+                        name: name,
+                        age: age,
+                        // ...other properties
+                    };
+                }
+
+                let user = makeUser("John", 30);
+                alert(user.name); // John
+                ```
+            * The above code simplified using the shorthand for property values.
+                ```js
+                function makeUser(name, age) {
+                    return {
+                        name, // same as name: name
+                        age,  // same as age: age
+                        // ...
+                    };
+                }
+                ```
+        * While a variable cannot have the same name as one of the language-reserved words ('for', 'let', 'return', etc.), an object *can* have those as names. 
+            ```js
+            // these properties are all right
+            let obj = {
+                for: 1,
+                let: 2,
+                return: 3
+            };
+
+            alert( obj.for + obj.let + obj.return );  // 6
+            ```
+        * Without such limitations, both strings and symbols can be used as names. Other types, such as integers, are converted into strings as well. There is one limitation: an object with property named ```__proto__``` cannot be set to a non-object value.
+        
