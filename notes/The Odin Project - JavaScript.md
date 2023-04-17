@@ -721,4 +721,8 @@
             alert( obj.for + obj.let + obj.return );  // 6
             ```
         * Without such limitations, both strings and symbols can be used as names. Other types, such as integers, are converted into strings as well. There is one limitation: an object with property named ```__proto__``` cannot be set to a non-object value.
-        
+            ```js
+            let obj = {};
+            obj.__proto__ = 5; // assign a number
+            alert(obj.__proto__); // [object Object] - the value is an object, didn't work as intended
+            ```
