@@ -823,6 +823,7 @@
 2. How do you access object properties?
     * We can use the dot notation (```obj.property```) or the square bracket notation (```obj["property"]```).
 3. What is ```Array.prototype.map()``` useful for?
+    * Some code taken from [Wes Bos' video](https://www.youtube.com/watch?v=HB1ZC7czKRs)
     * The map() function takes in an array, handles an operation on the array, and returns a new array of the **same length**.
         ```js
         const inventors = [
