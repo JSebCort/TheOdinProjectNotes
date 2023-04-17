@@ -726,3 +726,133 @@
             obj.__proto__ = 5; // assign a number
             alert(obj.__proto__); // [object Object] - the value is an object, didn't work as intended
             ```
+        * We can access any property, even if it doesn't exist using the "in" operator
+            ```js
+            // syntax: "key" in object
+
+            let user = { name: "John", age: 30 };
+
+            alert( "age" in user ); // true, user.age exists
+            alert( "blabla" in user ); // false, user.blabla doesn't exist
+            ```
+        * The special "for..in" loop alows us to iterate through all the keys of an object.
+            * Syntax
+                ```js
+                    for (key in object) {
+                        // executes the body for each key among object properties
+                    }
+                ```
+            * Example
+                ```js
+                let user = {
+                    name: "John",
+                    age: 30,
+                    isAdmin: true
+                };
+
+                for (let key in user){
+                    // keys
+                    alert( key ); // Iteration order: name, age, isAdmin
+
+                    // values for keys
+                    alert( user[key] ) // Iteration order: John, 30, true
+                }
+                ```
+        * Objects are ordered in special order. Integer properties (which are strings that can be converted to-and-from an integer without changing, i.e. "49" can be both an integer and string) are sorted from low to high, while other properties will appear in creation order.
+            * Integer properties
+                ```js
+                let codes = {
+                "49": "Germany",
+                "41": "Switzerland",
+                "44": "Great Britain",
+                "1": "USA"
+                };
+
+                // integer properties are listed in the numerical order
+                for (let code in codes) {
+                alert(code); //Order: 1, 41, 44, 49
+                }
+                ```
+            * Non-integer properties
+                ```js
+                let user = {
+                name: "John",
+                surname: "Smith"
+                };
+                user.age = 25; // add one more
+
+                // non-integer properties are listed in the creation order
+                for (let prop in user) {
+                alert( prop ); // name, surname, age
+                }
+                ```
+            * How to get around integer properties: add "+" before each code to turn them into non-integers.
+                ```js
+                let codes = {
+                "+49": "Germany",
+                "+41": "Switzerland",
+                "+44": "Great Britain",
+                "+1": "USA"
+                };
+
+                // non-integer properties are listed in the creation order
+                for (let code in codes) {
+                alert(code); //Order: 49, 41, 44, 1
+                }
+                ```
+2. Quick Objects Summary from Javascript.info
+    * Objects are associative arrays with several special features.
+    * They store properties (key-value pairs), where:
+        * Property keys must be strings or symbols (usually strings).
+        * Values can be of any type.
+    * To access a property, we can use:
+        * The dot notation: ```obj.property```.
+        * Square brackets notation ```obj["property"]```. Square brackets allow taking the key from a variable, like ```obj[varWithKey]```.
+    * Additional operators:
+        * To delete a property: ```delete obj.prop```.
+        * To check if a property with the given key exists: ```"key" in obj```.
+        * To iterate over an object: ```for (let key in obj)``` loop.
+    * What we’ve studied in this chapter is called a “plain object”, or just ```Object```.
+    * There are many other kinds of objects in JavaScript:
+        * ```Array``` to store ordered data collections,
+        * ```Date``` to store the information about the date and time,
+        * ```Error``` to store the information about an error.
+## Knowledge Check
+1. What is the difference between objects and arrays?
+    * Objects are used to store properties in key-value value pairs. Arrays, a form of an object, store data in an ordered collection and can be accessed via indices.
+2. How do you access object properties?
+    * We can use the dot notation (```obj.property```) or the square bracket notation (```obj["property"]```).
+3. What is ```Array.prototype.map()``` useful for?
+    * The map() function takes in an array, handles an operation on the array, and returns a new array of the **same length**.
+        ```js
+        const inventors = [
+            { first: "Albert", last: "Einstein", year: 1879, passed: 1955},
+            { first: "Isaac", last: "Newton", year: 1643, passed: 1727},
+            { first: "Galileo", last: "Galilei", year: 1564, passed: 1642},
+            { first: "Marie", last: "Curie", year: 1934, passed: 1934}
+        ]
+
+        const fullNames = inventors.map(inventor => inventor.first + ' ' + invertor.last);
+        console.log(fullNames) // ['Albert Einstein', 'Isaac Newton', 'Galileo Galilei', 'Marie Curie']
+        ```
+4. What is ```Array.prototype.reduce()``` useful for?
+    * The reduce() function allows the user to execute a 'reducer' callback function on each element of the array. The resulting value, is then utilized in the next iteration's function. The final result will be a single value.
+        ```js
+        const array1 = [1, 2, 3, 4];
+
+        // 0 + 1 + 2 + 3 + 4
+        const initialValue = 0;
+        const sumWithInitial = array1.reduce(
+        (accumulator, currentValue) => accumulator + currentValue, initialValue
+        );
+
+        console.log(sumWithInitial);
+        // Expected output: 10
+        ```
+        ```js
+        const totalYears = inventors.reduce((total, inventor) => {
+            return total + (inventor.passed - inventor.year)
+        }, 0);
+
+        console.log(totalYears) // 523
+        ```
