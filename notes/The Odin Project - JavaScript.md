@@ -833,7 +833,7 @@
             { first: "Marie", last: "Curie", year: 1934, passed: 1934}
         ]
 
-        const fullNames = inventors.map(inventor => inventor.first + ' ' + invertor.last);
+        const fullNames = inventors.map(inventor => inventor.first + ' ' + inventor.last);
         console.log(fullNames) // ['Albert Einstein', 'Isaac Newton', 'Galileo Galilei', 'Marie Curie']
         ```
 4. What is ```Array.prototype.reduce()``` useful for?
